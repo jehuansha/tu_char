@@ -8,7 +8,7 @@ const routes: Routes = [
     component: HomePage,
   }
 ];
-
+"tuhcar"
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
