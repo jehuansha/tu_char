@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Recuperar Contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">recuperar</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    <ion-item>
+      <ion-input label="Usuario" labelPlacement="stacked" placeholder="Ingrese Usuario"></ion-input>
+    </ion-item>
+
+  </ion-list>
+  <div id="container">
+    <!-- se crea una clase para poder modificarlo y se le pone button a los lados para que el estilo se pueda poner mejor-->
+     <button ion-button [routerLink]="['/login']" class="btn">Ingresar</button>
+  </div>
+
+
+
+
+
+</ion-content>

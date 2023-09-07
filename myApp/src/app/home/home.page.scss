@@ -1,27 +1,18 @@
-#container {
-  text-align: center;
+// border-radius -> para cortar los bordes del boton  font-size engrandar el contenido del boton
+.btn{
+  background-color: var(--ion-color-secondary-shade);
+  color: white;
+  padding: 20px 30px 20px 30px;
+  border-radius: 10px;
+  font-size: 20px;
+}
 
+#container{
+  text-align: center;
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 20px;
+  right: 20px;
   top: 50%;
   transform: translateY(-50%);
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
