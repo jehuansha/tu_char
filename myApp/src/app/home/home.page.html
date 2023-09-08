@@ -15,4 +15,22 @@
       <ion-title size="large">Blank</ion-title>
     </ion-toolbar>
   </ion-header>
+
+
+  <div id="container">
+    <ion-text color="primary">
+      <h1>TeLlevoAPP</h1>
+    </ion-text>
+  <ion-avatar id="avatar" #avatar>
+    <img alt="Silhouette of a person's head"
+      src="https://media.discordapp.net/attachments/1016908374119563305/1149486321459535981/kisspng-car-uber-taxi-vehicle-new-york-city-taxi-driver-5ad1c417aa9296.2469973615236966636987_preview_rev_1.png" />
+  </ion-avatar>
+  <ion-button (click)="playAvatar()" size="small" shape="round">
+    Animar
+  </ion-button>
+  <ion-button [routerLink]="['/login']" size="small" shape="round">
+    Ir a Login
+  </ion-button>
+  </div>
+  
 </ion-content>
