@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,18 +8,24 @@ import { NavController } from '@ionic/angular';
 })
 
 export class LoginPage {
+  hide = true;
 
-  usuario: string = '';
-  pass: string = '';
+  user = {
+    username: "",
+    password: ""
+  }
 
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private router: Router) { }
+  
   Ingresar() {
-    this.navCtrl.navigateForward('/bienvenida', {
-      queryParams: {
-        value: this.usuario,
-      },
-    });
+    let navegationExtras: NavigationExtras = {
+      state: {
+        user: this.user
+      }
+    }
+      this.router.navigate(['/bienvenida'], navegationExtras)
+ 
   }
 
 
