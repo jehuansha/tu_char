@@ -15,7 +15,7 @@ export class HomePage {
 
 
   private animation!:Animation;
-  constructor(private router: Router,private animationCtrl:AnimationController) { }
+  constructor(private router: Router,private animationCtrl:AnimationController ) { }
 
 
   ngAfterViewInit() {

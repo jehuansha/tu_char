@@ -17,6 +17,9 @@ def lista_user(request):
     serializer = UserSerializer(categorias, many=True)
     return Response(serializer.data)
 
+
+@csrf_exempt
+@api_view(['GET'])
 def lista_viaje(request):
     categorias = Viaje.objects.all()
     serializer = ViajeSerializer(categorias, many=True)
