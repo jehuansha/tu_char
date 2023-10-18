@@ -1,23 +1,18 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      🡸 Menú
-    </ion-title>
+    <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">login</ion-title>
     </ion-toolbar>
   </ion-header>
 
 
-  <div id="container">
+  <div id="containers">
     <ion-text color="primary">
       <h1>TeLlevoAPP</h1>
     </ion-text>
@@ -28,9 +23,25 @@
   <ion-button (click)="playAvatar()" size="small" shape="round">
     Animar
   </ion-button>
-  <ion-button [routerLink]="['/login']" size="small" shape="round">
-    Ir a Login
-  </ion-button>
   </div>
-  
+
+  <ion-list>
+    <ion-item>
+      <ion-input label="Usuario" [(ngModel)]="user.username" labelPlacement="stacked"
+      placeholder="Ingrese usuario" maxlength="8" minlength="3"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <!-- placeholder="Ingrese Contraseña"  esto es para poner un texto en el input -->
+      <!-- labelPlacement="stacked" esto es para que el texto escrito del placeholder desaparesca cuando se haga click en el input-->
+      <ion-input label="Password" [(ngModel)]="user.password" labelPlacement="stacked"
+        placeholder="Ingrese contraseña" type="Password" maxlength="8" minlength="3"></ion-input>
+    </ion-item>
+
+  </ion-list>
+  <a [routerLink]="['/recuperar']">Recuperar Contraseña</a>
+  <div id="container">
+    <!-- se crea una clase para poder modificarlo y se le pone button a los lados para que el estilo se pueda poner mejor -->
+     <button ion-button  (click)="Ingresar()" class="btn">Ingresar</button>
+  </div>
 </ion-content>
