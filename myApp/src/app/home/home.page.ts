@@ -26,21 +26,20 @@ export class HomePage {
 
   ngAfterViewInit() {
     this.animation = this.animationCtrl.create()
-    .addElement(this.avatar.nativeElement)
-    .duration(5000)
-    .iterations(Infinity)
-    .keyframes([
-      {offset:0, transform:'translateX(0px)',opacity:'1'},
-      {offset:0.25, transform:'translateX(100px)',opacity:'0.2'},
-      {offset:0.50, transform:'translateX(0px)',opacity:'1'},
-      {offset:0.75, transform:'translateX(-100px)',opacity:'0.2'},
-      {offset:1, transform:'translateX(0px)',opacity:'1'},
-    ])
-  }
-
-  playAvatar(){
+      .addElement(this.avatar.nativeElement)
+      .duration(5000)
+      .iterations(Infinity)
+      .keyframes([
+        {offset:0, transform:'translateX(0px)',opacity:'1'},
+        {offset:0.25, transform:'translateX(100px)',opacity:'0.2'},
+        {offset:0.50, transform:'translateX(0px)',opacity:'1'},
+        {offset:0.75, transform:'translateX(-100px)',opacity:'0.2'},
+        {offset:1, transform:'translateX(0px)',opacity:'1'},
+      ])
     this.animation.play();
   }
+
+
   
   Ingresar() {
     let navegationExtras: NavigationExtras = {
