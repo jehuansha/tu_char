@@ -6,7 +6,7 @@ class User(models.Model):
     user = models.CharField(max_length=20,verbose_name = "Nombre Usuario")
     password = models.CharField(max_length=20, verbose_name = "Contraseña Usuario")
     nombre = models.CharField(max_length=20, verbose_name = "Nombre de la Persona")
-    correo = models.EmailField(max_length=254, verbose_name = "Correo de la Persona")
+    correo = models.CharField(max_length=50, verbose_name = "Correo de la Persona")
 
     def __str__(self):
         return self.idUser
