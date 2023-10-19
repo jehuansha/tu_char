@@ -15,8 +15,10 @@ class Migration(migrations.Migration):
             name='User',
             fields=[
                 ('idUser', models.IntegerField(primary_key=True, serialize=False, verbose_name='ID USUARIO')),
-                ('nombre', models.CharField(max_length=20, verbose_name='Nombre de Usuario')),
-                ('contraseña', models.CharField(max_length=20, verbose_name='Contraseña Usuario')),
+                ('user' , models.CharField(max_length=20,verbose_name = "Nombre Usuario")),
+                ('password' , models.CharField(max_length=20, verbose_name = "Contraseña Usuario")),
+                ('nombre' , models.CharField(max_length=20, verbose_name = "Nombre de la Persona")),
+                ('correo' , models.CharField(max_length=50, verbose_name = "Correo de la Persona")),
             ],
         ),
         migrations.CreateModel(
@@ -29,3 +31,5 @@ class Migration(migrations.Migration):
             ],
         ),
     ]
+
+    
