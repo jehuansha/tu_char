@@ -4,6 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
+<div id="container">
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -14,15 +15,8 @@
     <ion-item>
       <ion-input label="Usuario" labelPlacement="stacked" placeholder="Ingrese Usuario"></ion-input>
     </ion-item>
-
   </ion-list>
-  <div id="container">
     <!-- se crea una clase para poder modificarlo y se le pone button a los lados para que el estilo se pueda poner mejor-->
      <button ion-button [routerLink]="['/login']" class="btn">Ingresar</button>
-  </div>
-
-
-
-
-
-</ion-content>
+  </ion-content>
+</div>
