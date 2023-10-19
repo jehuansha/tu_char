@@ -3,6 +3,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { IonAvatar } from '@ionic/angular';
 import type { Animation } from '@ionic/angular';
 import { AnimationController } from '@ionic/angular';
+import { DjangoapiService } from '../conexion/djangoapi.service';
 
 
 @Component({
@@ -20,9 +21,17 @@ export class HomePage {
     username: "",
     password: ""
   }
+  segment: string = 'login';
+
+  nuevoUser: any = {
+    user: '',
+    password: '',
+    nombre:'',
+    correo:''
+  }
 
   private animation!:Animation;
-  constructor(private router: Router,private animationCtrl:AnimationController ) { }
+  constructor(private router: Router,private animationCtrl:AnimationController,private djangoApi: DjangoapiService) { }
 
   ngAfterViewInit() {
     this.animation = this.animationCtrl.create()
@@ -50,6 +59,19 @@ export class HomePage {
       this.router.navigate(['/bienvenida'], navegationExtras)
  
   }
+
+  crearNuevoUsuario() {
+    this.djangoApi.crearUsuario(this.nuevoUser).subscribe(
+      (response) => {
+        console.log('Usuario creado:', response);
+        
+      },
+      (error) => {
+        console.error('Error al crear usuario:', error);
+      }
+    );
+  }
+
 }
 
 

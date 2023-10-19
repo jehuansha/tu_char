@@ -11,6 +11,15 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-segment [(ngModel)]="segment" color="primary">
+    <ion-segment-button value="login">
+      <ion-label>Inicio Usuario</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="crear">
+      <ion-label>Crear Usuario</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
 
   <div id="tituloql" color="primary">
     <header>TeLlevoAPP</header>
@@ -23,24 +32,61 @@
   
   </div>
 
-  <div id="container">
-  <ion-list>
-    <ion-item>
-      <ion-input label="Usuario" [(ngModel)]="user.username" labelPlacement="stacked"
-      placeholder="Ingrese usuario" maxlength="8" minlength="3"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input label="Password" [(ngModel)]="user.password" labelPlacement="stacked"
-        placeholder="Ingrese contraseña" type="Password" maxlength="8" minlength="3"></ion-input>
-    </ion-item>
-  <ion-item>
-    <a [routerLink]="['/recuperar']">Recuperar Contraseña</a>
-  </ion-item>
+  <form *ngIf="segment === 'login'" (ngSubmit)="Ingresar()">
+    <div id="container">
+      <ion-list>
+        <ion-item>
+          <ion-input label="Usuario" [(ngModel)]="user.username" labelPlacement="stacked"
+          placeholder="Ingrese usuario" maxlength="8" minlength="3"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Password" [(ngModel)]="user.password" labelPlacement="stacked"
+            placeholder="Ingrese contraseña" type="Password" maxlength="8" minlength="3"></ion-input>
+        </ion-item>
+      <ion-item>
+        <a [routerLink]="['/recuperar']">Recuperar Contraseña</a>
+      </ion-item>
+    
+      <ion-item>
+        <button ion-button  (click)="Ingresar()" class="btn">Ingresar</button>
+      </ion-item>
+        </ion-list>
+        <!-- se crea una clase para poder modificarlo y se le pone button a los lados para que el estilo se pueda poner mejor -->
+      </div>
+  </form>
+  
 
-  <ion-item>
-    <button ion-button  (click)="Ingresar()" class="btn">Ingresar</button>
-  </ion-item>
-    </ion-list>
-    <!-- se crea una clase para poder modificarlo y se le pone button a los lados para que el estilo se pueda poner mejor -->
-  </div>
+  <form *ngIf="segment === 'crear'" (ngSubmit)="crearNuevoUsuario()">
+    <div id="container">
+    
+    <ion-item>
+      <ion-label position="floating">User</ion-label>
+      <ion-input [(ngModel)]="nuevoUser.user" name="user" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input [(ngModel)]="nuevoUser.password" name="password" type="password" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">nombre</ion-label>
+      <ion-input [(ngModel)]="nuevoUser.nombre" name="nombre" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">correo</ion-label>
+      <ion-input [(ngModel)]="nuevoUser.correo" name="correo" type="mail" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <button  ion-button  type="submit" class="btn" >Registro</button>
+    </ion-item>
+    </div>
+    
+  </form>
+
+
+
+
 </ion-content>

@@ -5,10 +5,7 @@ import { retry } from 'rxjs/internal/operators/retry';
 @Injectable({
   providedIn: 'root'
 })
-// export class DjangoapiService {
 
-//   constructor() { }
-// }
 export class DjangoapiService {
   apiURL = 'http://127.0.0.1:8000/api';
   
@@ -18,6 +15,10 @@ export class DjangoapiService {
     return this.http.get(this.apiURL+'/lista_user')
     .pipe(retry(3));
   }
+  crearUsuario(usuarioData: any): Observable<any> {
+    return this.http.post(this.apiURL + '/lista_user', usuarioData);
+  }
+
 
   getViaje():Observable<any>{
     return this.http.get(this.apiURL+'/lista_viaje')
