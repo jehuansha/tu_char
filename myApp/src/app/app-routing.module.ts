@@ -20,7 +20,11 @@ const routes: Routes = [
     path: 'bienvenida',
     canActivate: [AuthGuard],
     loadChildren: () => import('./bienvenida/bienvenida.module').then(m => m.BienvenidaPageModule)
+  },  {
+    path: 'error404',
+    loadChildren: () => import('./error404/error404.module').then( m => m.Error404PageModule)
   },
+
 
 
 ];
