@@ -4,6 +4,8 @@ import { IonAvatar } from '@ionic/angular';
 import type { Animation } from '@ionic/angular';
 import { AnimationController } from '@ionic/angular';
 import { DjangoapiService } from '../conexion/djangoapi.service';
+import { Storage } from '@ionic/storage';
+import { AutenticacionService } from '../autenticacion.service';
 
 
 @Component({
@@ -17,10 +19,7 @@ export class HomePage {
 
   @ViewChild(IonAvatar,{read:ElementRef}) avatar!:ElementRef<HTMLIonAvatarElement>;
 
-  user = {
-    username: "",
-    password: ""
-  }
+  
   segment: string = 'login';
 
   nuevoUser: any = {
@@ -31,7 +30,19 @@ export class HomePage {
   }
 
   private animation!:Animation;
-  constructor(private router: Router,private animationCtrl:AnimationController,private djangoApi: DjangoapiService) { }
+  constructor(private router: Router,private animationCtrl:AnimationController,private djangoApi: DjangoapiService , private storage:Storage ,private auth: AutenticacionService) { 
+    var obj = {
+          name:"pepe23",
+          age:24
+        }
+        storage.set('obj', obj);
+        storage.get('obj').then((val) => {
+        console.log(val);
+        console.log(val.name)
+        });
+      
+  }
+  public mensaje = "";
 
   ngAfterViewInit() {
     this.animation = this.animationCtrl.create()
@@ -47,17 +58,20 @@ export class HomePage {
       ])
     this.animation.play();
   }
+  user = {
+    username: "",
+    password: ""
+  }
 
 
   
-  Ingresar() {
+  enviarInformacion() {
     let navegationExtras: NavigationExtras = {
       state: {
         user: this.user
       }
     }
       this.router.navigate(['/bienvenida'], navegationExtras)
- 
   }
 
   crearNuevoUsuario() {
