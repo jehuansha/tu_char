@@ -8,15 +8,11 @@ import { AutenticacionService } from './autenticacion.service';
 })
 export class AuthGuard implements CanActivate {
   constructor(private router: Router, private auth: AutenticacionService) { }
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-    if (this.auth.autenticado) {
+  canActivate(): boolean {
+    if(this.auth.returnVal()){
       return true;
-    } else {
-      console.log("Sin logear")
-      this.router.navigate(['/home']);
+    }else{
+      this.router.navigate(['/home'])
       return false;
     }
   }

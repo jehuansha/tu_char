@@ -8,6 +8,7 @@ from core.models import User
 from core.models import Viaje
 from .serializers import UserSerializer
 from .serializers import ViajeSerializer
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 @csrf_exempt
@@ -19,9 +20,9 @@ def lista_user(request):
         return Response(serializer.data)
     elif request.method == 'POST': 
         data = request.data
-        user = data.get('user')
+        username = data.get('username')
         # Verificar si ya existe un usuario con el mismo correo electrónico
-        existing_user = User.objects.filter(user=user).first()
+        existing_user = User.objects.filter(username=username).first()
         if existing_user:
             return Response({'error': 'Ya existe un usuario con este nombre de usuario.'}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -30,6 +31,18 @@ def lista_user(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def Autenti(request):
+    if request.method == 'POST':
+        username = request.data.get('username')
+        password = request.data.get('password')
+        autenticado = authenticate(request, username=username, password=password)
+        # autenticado=user
+        if autenticado is not None:
+            login(request, autenticado)
+            return Response({'success': True, 'message': 'Inicio de sesion existoso'})
+        return Response({'success': False, 'message': 'Credenciales incorrectas'})
 
 
 @csrf_exempt
