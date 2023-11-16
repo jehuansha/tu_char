@@ -5,7 +5,7 @@ from core.models import Viaje
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['user','password','nombre','correo']
+        fields = ['username','password','nombre','correo']
 
 class ViajeSerializer(serializers.ModelSerializer):
     class Meta:

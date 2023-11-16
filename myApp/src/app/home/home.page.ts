@@ -17,13 +17,19 @@ import { AutenticacionService } from '../autenticacion.service';
 export class HomePage {
   hide = true;
 
+
+  username: string = '';
+  password: string = '';
+
+  authBool:boolean= false; 
+
   @ViewChild(IonAvatar,{read:ElementRef}) avatar!:ElementRef<HTMLIonAvatarElement>;
 
   
   segment: string = 'login';
 
   nuevoUser: any = {
-    user: '',
+    username: '',
     password: '',
     nombre:'',
     correo:''
@@ -58,6 +64,7 @@ export class HomePage {
       ])
     this.animation.play();
   }
+  
   user = {
     username: "",
     password: ""
@@ -65,14 +72,6 @@ export class HomePage {
 
 
   
-  enviarInformacion() {
-    let navegationExtras: NavigationExtras = {
-      state: {
-        user: this.user
-      }
-    }
-      this.router.navigate(['/bienvenida'], navegationExtras)
-  }
 
   crearNuevoUsuario() {
     this.djangoApi.crearUsuario(this.nuevoUser).subscribe(
@@ -85,6 +84,39 @@ export class HomePage {
       }
     );
   }
+
+  async login() {
+    try {
+      const res = await this.djangoApi.login(this.username, this.password).toPromise();
+  
+      if (typeof res === 'boolean') {
+        if (res) {
+          console.log(res);
+          let navigationExtras: NavigationExtras = {
+            state: { username: this.username }
+          };
+          this.authBool = true;
+          this.auth.Autenticacion(this.authBool);
+          this.router.navigate(['/bienvenida'], navigationExtras);
+          console.log('Inicio de sesion exitoso');
+        } else {
+          console.log(res);
+          this.authBool = false;
+          this.auth.Autenticacion(this.authBool);
+          console.error('Inicio de sesión fallido');
+        }
+      } else {
+        console.error('Respuesta inesperada del servidor');
+      }
+    } catch (error) {
+      this.authBool = false;
+      this.auth.Autenticacion(this.authBool);
+      console.error('Error al iniciar sesión', error);
+    }
+  }
+    enviarInformacion() {
+      this.login();
+    }
 
 }
 

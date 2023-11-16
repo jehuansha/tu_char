@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'tellevoapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'tuchar2',
+        'NAME': 'tuchar5',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

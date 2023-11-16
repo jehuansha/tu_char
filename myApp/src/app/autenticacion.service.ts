@@ -13,37 +13,23 @@ interface User {
 })
 
 export class AutenticacionService {
-  public autenticado!: boolean;
+  autenticado:boolean=false;
 
   private local!: Storage;
 
   constructor(private storage: Storage, private route: Router) {
-    this.init()
-  }
-  async init() {
-    const storage = await this.storage.create();
-    this.local = storage;
 
   }
-
-  async login(username: string, password: string): Promise<boolean> {
-    //Llamamos el arreglo desde el Storage
-    const users: User[] = (await this.local.get('users')) || [];
-    //obtenermos el valor del usuario que buscamos 
-    const user = users.find((us: User) => us.username === username && us.password === password);
-    //Si el usuario existe autentificamos y el metodo retorna true
-    //caso contrario lanzamos false y no esta activo
-    if (user) {
-      this.autenticado = true;
-      return true;
+  
+  Autenticacion(valor: boolean){
+    if(valor){
+      this.autenticado=true;
+    }else{
+      this.autenticado=false;
     }
-    this.autenticado = false;
-    return false;
+}
 
-  }
-
-  logout() {
-    this.autenticado = false;
-    this.route.navigate(['/home']);
-  }
+returnVal(){
+  return this.autenticado
+}
 }

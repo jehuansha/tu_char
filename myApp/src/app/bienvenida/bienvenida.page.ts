@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DjangoapiService } from '../conexion/djangoapi.service';
-import { AuthGuard } from '../auth.guard';
+import { AutenticacionService } from '../autenticacion.service';
 
 @Component({
   selector: 'app-bienvenida',
@@ -13,31 +13,40 @@ export class BienvenidaPage {
   state:any;
   user:any;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router , private authGuard: AuthGuard,
+
+  username: string = '';
+
+  authBool:boolean=false;
+
+  constructor(private activatedRoute: ActivatedRoute, private router: Router , private auth: AutenticacionService,
     private djangoApi: DjangoapiService){
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.state = this.router.getCurrentNavigation()?.extras.state;
-      this.user=this.state.user
-      console.log(this.user);
-    })
-    this.djangoApi.getUser().subscribe(
-      (user)=>{
-        console.log(user);
+      const state=this.router.getCurrentNavigation()?.extras.state
+      if(state){
+        this.username=state['username']
       }
-      ,
-      (error)=>{
-        console.log(error);
-      }
-    )
+    // this.djangoApi.getUser().subscribe(
+    //   (user)=>{
+    //     console.log(user);
+    //   }
+    //   ,
+    //   (error)=>{
+    //     console.log(error);
+    //   }
+    // )
     
-    this.djangoApi.getViaje().subscribe(
-      (viaje)=>{
-        console.log(viaje);
-      }
-      ,
-      (error)=>{
-        console.log(error);
-      }
-    );
+    // this.djangoApi.getViaje().subscribe(
+    //   (viaje)=>{
+    //     console.log(viaje);
+    //   }
+    //   ,
+    //   (error)=>{
+    //     console.log(error);
+    //   }
+    // );
+  }
+
+  logout(){
+    this.auth.Autenticacion(this.authBool);
+   this.router.navigate(['/login']) 
   }
 }
