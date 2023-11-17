@@ -25,13 +25,13 @@ const routes: Routes = [
     canActivate: [IngGuard]
   },
   {
-    path: 'error404',
-    loadChildren: () => import('./error404/error404.module').then( m => m.Error404PageModule)
-  },
-  {
     path: 'pass',
     loadChildren: () => import('./pass/pass.module').then( m => m.PassPageModule),
     canActivate: [IngGuard]
+  },
+  {
+    path: '**',
+    loadChildren: () => import('./error404/error404.module').then( m => m.Error404PageModule)
   },
 
 
@@ -46,4 +46,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-

@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>TeLlevoAPP</ion-title>
+    <img src="assets/img/logo.png" alt="logo">
   </ion-toolbar>
 </ion-header>
 
@@ -38,8 +38,12 @@
     </ion-item>
 
     <ion-item>
-      <ion-button fill="outline" color="color" (click)="register()">Registrar Viaje</ion-button>
+      <ion-button fill="outline" color="color" (click)="register1()">Registrar Viaje</ion-button>
       <ion-button fill="outline" color="color" (click)="logout()">Salir</ion-button>
+      <div *ngIf="loginerror" class="error-message" style="color: rgb(60, 199, 41);">
+        Viaje Registrado Correctamente!
+      </div>
+
     </ion-item>
   </div>
 

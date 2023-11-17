@@ -103,10 +103,9 @@ export class HomePage {
           usuario.password === this.credentials.password
         ) {
           usuarioAutenticado = true;
-  
-          // Verificar el rol del usuario
+
           if (usuario.rol === 'conductor') {
-            // Si el usuario es conductor, navegar a la página de bienvenida
+            
             localStorage.setItem('ingresado', 'true');
             let navegationExtras: NavigationExtras = {
               state: {
@@ -116,7 +115,7 @@ export class HomePage {
             this.router.navigate(['/bienvenida'], navegationExtras);
             console.log("Usuario conductor autenticado correctamente");
           } else if (usuario.rol === 'pasajero') {
-            // Si el usuario es pasajero, navegar a la página de pasajero
+            
             localStorage.setItem('ingresado', 'true');
             let navegationExtras: NavigationExtras = {
               state: {
@@ -126,11 +125,10 @@ export class HomePage {
             this.router.navigate(['/pass'], navegationExtras);
             console.log("Usuario pasajero autenticado correctamente");
           } else {
-            // El usuario tiene un rol no reconocido
+          
             console.log("Error: Rol de usuario no reconocido2");
           }
-  
-          // Salir del bucle una vez que se ha autenticado al usuario
+          
           break;
         }
       }

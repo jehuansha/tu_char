@@ -78,14 +78,18 @@ WSGI_APPLICATION = 'tellevoapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'tuchar22',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
+        'NAME': 'tuchar',
+        'USER': 'admin',
+        'PASSWORD': 'root2023',
+        'HOST': 'database-tellevo.c1zy6n1dj1pi.us-east-2.rds.amazonaws.com',
         'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        }
     }
 }
 # Password validation

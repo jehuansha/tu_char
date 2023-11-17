@@ -22,6 +22,7 @@ export class BienvenidaPage {
   state: any;
   credentials: any;
   viajes: any = [];
+  loginerror: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router , private auth: AutenticacionService,
     private djangoApi: DjangoapiService){
@@ -49,7 +50,15 @@ export class BienvenidaPage {
     localStorage.removeItem('ingresado');
     this.router.navigate(['/home']); 
   }
+
+  register1() {
+    this.register();
+    this.loginerror = true;
+  }
+
 }
+
+
 
     // this.djangoApi.getUser().subscribe(
     //   (user)=>{

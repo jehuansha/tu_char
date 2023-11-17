@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <img src="assets/img/logo.png" alt="logo">
   </ion-toolbar>
 </ion-header>
 
@@ -16,9 +16,6 @@
   </ion-segment>
 
 
-  <div id="tituloql" color="primary">
-    <header>TeLlevoAPP</header>
-  </div>
   <div id="containers">
     <ion-avatar id="avatar" #avatar>
       <img alt="Silhouette of a person's head"
@@ -30,6 +27,9 @@
   <div *ngIf="segment === 'login'">
     <div id="container">
       <ion-list>
+        <div id="tituloql" color="primary">
+          <header>TeLlevoAPP</header>
+        </div>
         <ion-item>
           <ion-input label="Usuario" matInput [(ngModel)]="credentials.username" required labelPlacement="stacked" placeholder="Ingrese usuario"
             maxlength="8" minlength="3"></ion-input>

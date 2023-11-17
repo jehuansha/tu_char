@@ -1,15 +1,27 @@
-<ion-header [translucent]="true">
+
+<ion-header>
   <ion-toolbar>
-    <ion-title>pass</ion-title>
+      <img src="assets/img/logo.png" alt="logo">
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">pass</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list *ngIf="viaje.length > 0">
+    <ion-item *ngFor="let item of viaje">
+      <ion-label>{{ item.patente }}</ion-label>
+      <ion-label>{{ item.hora }} hrs</ion-label>
+      <ion-label>${{ item.costo }}</ion-label>
+      <ion-label>{{ item.capacidad }} Pasajeros</ion-label>
+      <ion-label>{{ item.destino }}</ion-label>
+      <ion-label>{{ item.duenno }}</ion-label>
+    </ion-item>
+    <ion-button fill="outline" color="color">Seleccionar Viaje</ion-button>
+  </ion-list>
 
-  <ion-label> <ion-text color="white"><h1>Bienvenido a TeLlevoAPP</h1></ion-text> </ion-label>
+  <ion-button fill="outline" color="color" (click)="logout()">Salir</ion-button>
+
+
+  <ion-text *ngIf="viaje.length === 0" color="warning">
+    No se encontraron datos de viaje.
+  </ion-text>
 </ion-content>
