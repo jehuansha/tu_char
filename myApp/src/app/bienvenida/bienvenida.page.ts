@@ -10,20 +10,17 @@ import { AutenticacionService } from '../autenticacion.service';
 })
 export class BienvenidaPage {
 
-  state:any;
-  user:any;
-
-
-  username: string = '';
-
-  authBool:boolean=false;
+  state: any;
+  credentials: any;
+  viajes: any = [];
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router , private auth: AutenticacionService,
     private djangoApi: DjangoapiService){
-      const state=this.router.getCurrentNavigation()?.extras.state
-      if(state){
-        this.username=state['username']
-      }
+      this.activatedRoute.queryParams.subscribe(params => {
+        this.state = this.router.getCurrentNavigation()?.extras.state;
+        this.credentials = this.state.credentials
+        console.log(this.credentials);
+      });
     // this.djangoApi.getUser().subscribe(
     //   (user)=>{
     //     console.log(user);
@@ -46,7 +43,7 @@ export class BienvenidaPage {
   }
 
   logout(){
-    this.auth.Autenticacion(this.authBool);
-   this.router.navigate(['/login']) 
+    localStorage.removeItem('ingresado');
+    this.router.navigate(['/home']); 
   }
 }

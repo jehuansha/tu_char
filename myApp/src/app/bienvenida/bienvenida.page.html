@@ -10,8 +10,8 @@
       <ion-title size="large">bienvenida</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-label> <ion-text color="white"><h1>Bienvenido a TeLlevoAPP, {{user.username}}</h1></ion-text> </ion-label>
-  
+  <ion-label> <ion-text color="white"><h1>Bienvenido a TeLlevoAPP, {{ credentials.username }}</h1></ion-text> </ion-label>
+  <ion-button fill="outline" color="color" (click)="logout()">Salir</ion-button>
 
 </ion-content>
 

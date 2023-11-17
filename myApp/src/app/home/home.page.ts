@@ -7,6 +7,8 @@ import { DjangoapiService } from '../conexion/djangoapi.service';
 import { Storage } from '@ionic/storage';
 import { AutenticacionService } from '../autenticacion.service';
 
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-home',
@@ -15,40 +17,31 @@ import { AutenticacionService } from '../autenticacion.service';
 })
 
 export class HomePage {
+  credentials = {
+    username: "",
+    password: ""
+  }
   hide = true;
+  usuarios : any = [];
+  users: any = [];
+  loginerror: boolean = false;
+  error: boolean = false;
 
 
-  username: string = '';
-  password: string = '';
-
-  authBool:boolean= false; 
 
   @ViewChild(IonAvatar,{read:ElementRef}) avatar!:ElementRef<HTMLIonAvatarElement>;
 
   
   segment: string = 'login';
 
-  nuevoUser: any = {
-    username: '',
-    password: '',
-    nombre:'',
-    correo:''
-  }
 
   private animation!:Animation;
-  constructor(private router: Router,private animationCtrl:AnimationController,private djangoApi: DjangoapiService , private storage:Storage ,private auth: AutenticacionService) { 
-    var obj = {
-          name:"pepe23",
-          age:24
-        }
-        storage.set('obj', obj);
-        storage.get('obj').then((val) => {
-        console.log(val);
-        console.log(val.name)
-        });
-      
+  constructor(private router: Router,private http: HttpClient,private animationCtrl:AnimationController,private djangoApi: DjangoapiService , private storage:Storage ,private auth: AutenticacionService) { 
+ 
   }
-  public mensaje = "";
+  ngOnInit(){
+    this.cargaUsuarios()
+  }
 
   ngAfterViewInit() {
     this.animation = this.animationCtrl.create()
@@ -64,60 +57,79 @@ export class HomePage {
       ])
     this.animation.play();
   }
-  
-  user = {
-    username: "",
-    password: ""
+
+  ionViewWillEnter() {
+    // Limpiar los campos de entrada al volver a la página de inicio
+    this.credentials.username = "";
+    this.credentials.password = "";
+
+    // Restablecer las banderas de error
+    this.loginerror = false;
   }
-
-
   
-
-  crearNuevoUsuario() {
-    this.djangoApi.crearUsuario(this.nuevoUser).subscribe(
-      (response) => {
-        console.log('Usuario creado:', response);
-        
-      },
-      (error) => {
-        console.error('Error al crear usuario:', error);
+  home(){
+    return this.http.get("http://127.0.0.1:8000/api/lista_usuarios/").subscribe(
+      data=>{
+        console.log(data)
       }
-    );
+    )
   }
 
-  async login() {
-    try {
-      const res = await this.djangoApi.login(this.username, this.password).toPromise();
-  
-      if (typeof res === 'boolean') {
-        if (res) {
-          console.log(res);
-          let navigationExtras: NavigationExtras = {
-            state: { username: this.username }
-          };
-          this.authBool = true;
-          this.auth.Autenticacion(this.authBool);
-          this.router.navigate(['/bienvenida'], navigationExtras);
-          console.log('Inicio de sesion exitoso');
-        } else {
-          console.log(res);
-          this.authBool = false;
-          this.auth.Autenticacion(this.authBool);
-          console.error('Inicio de sesión fallido');
+
+  cargaUsuarios(){
+    this.djangoApi.getUser().subscribe(
+      (res)=>{
+        console.log(res);
+        this.usuarios = res;
+      }
+      ,
+      (error)=>{
+        console.log(error);
+      }
+    )
+  }
+
+  entrar(){
+    if(this.credentials.username == "" || this.credentials.password  == ""){
+      
+      this.loginerror = false;
+      this.error = false;
+      console.log("vacio")
+    }
+    else if (this.usuarios.length>0){
+      for(const usuario of this.usuarios){
+        if(usuario.user===this.credentials.username && usuario.password === this.credentials.password){
+          localStorage.setItem('ingresado','true');
+          let navegationExtras: NavigationExtras = {
+            state: {
+              credentials: this.credentials
+              
+            }
+          }
+          this.router.navigate(['/bienvenida'], navegationExtras)
+          console.log("correcto");
         }
-      } else {
-        console.error('Respuesta inesperada del servidor');
+        else {
+          
+          this.loginerror = true;
+          this.error = false;
+          console.log("informacion ingresada incorrecta")
+    
+        }
       }
-    } catch (error) {
-      this.authBool = false;
-      this.auth.Autenticacion(this.authBool);
-      console.error('Error al iniciar sesión', error);
+    }
+    else {
+      
+      this.loginerror = false;
+      this.error = true;
+      console.log("No hay Usuarios Registrados")
+
     }
   }
-    enviarInformacion() {
-      this.login();
-    }
 
+  
+
+  
 }
 
 

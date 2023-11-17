@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './auth.guard';
+import { IngGuard } from './ing.guard';
+import { NoguardGuard } from './noguard.guard';
 
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
+    canActivate: [NoguardGuard]
   },
   {
     path: '',
@@ -14,12 +16,13 @@ const routes: Routes = [
   },
   {
     path: 'recuperar',
-    loadChildren: () => import('./recuperar/recuperar.module').then(m => m.RecuperarPageModule)
+    loadChildren: () => import('./recuperar/recuperar.module').then(m => m.RecuperarPageModule),
+    canActivate: [NoguardGuard]
   },
   {
     path: 'bienvenida',
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./bienvenida/bienvenida.module').then(m => m.BienvenidaPageModule)
+    loadChildren: () => import('./bienvenida/bienvenida.module').then(m => m.BienvenidaPageModule),
+    canActivate: [IngGuard]
   },
   {
     path: 'error404',

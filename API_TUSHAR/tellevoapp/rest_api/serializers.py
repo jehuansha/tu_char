@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from core.models import User
+from core.models import Usuario
 from core.models import Viaje
 
-class UserSerializer(serializers.ModelSerializer):
+class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ['username','password','nombre','correo']
+        model = Usuario
+        fields = ['user','password','nombre','correo']
 
 class ViajeSerializer(serializers.ModelSerializer):
     class Meta:
