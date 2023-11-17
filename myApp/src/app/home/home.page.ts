@@ -89,41 +89,61 @@ export class HomePage {
     )
   }
 
-  entrar(){
-    if(this.credentials.username == "" || this.credentials.password  == ""){
-      
+  entrar() {
+    if (this.credentials.username == "" || this.credentials.password == "") {
       this.loginerror = false;
       this.error = false;
-      console.log("vacio")
-    }
-    else if (this.usuarios.length>0){
-      for(const usuario of this.usuarios){
-        if(usuario.user===this.credentials.username && usuario.password === this.credentials.password){
-          localStorage.setItem('ingresado','true');
-          let navegationExtras: NavigationExtras = {
-            state: {
-              credentials: this.credentials
-              
-            }
+      console.log("vacio");
+    } else if (this.usuarios.length > 0) {
+      let usuarioAutenticado = false;
+  
+      for (const usuario of this.usuarios) {
+        if (
+          usuario.user === this.credentials.username &&
+          usuario.password === this.credentials.password
+        ) {
+          usuarioAutenticado = true;
+  
+          // Verificar el rol del usuario
+          if (usuario.rol === 'conductor') {
+            // Si el usuario es conductor, navegar a la página de bienvenida
+            localStorage.setItem('ingresado', 'true');
+            let navegationExtras: NavigationExtras = {
+              state: {
+                credentials: this.credentials,
+              },
+            };
+            this.router.navigate(['/bienvenida'], navegationExtras);
+            console.log("Usuario conductor autenticado correctamente");
+          } else if (usuario.rol === 'pasajero') {
+            // Si el usuario es pasajero, navegar a la página de pasajero
+            localStorage.setItem('ingresado', 'true');
+            let navegationExtras: NavigationExtras = {
+              state: {
+                credentials: this.credentials,
+              },
+            };
+            this.router.navigate(['/pass'], navegationExtras);
+            console.log("Usuario pasajero autenticado correctamente");
+          } else {
+            // El usuario tiene un rol no reconocido
+            console.log("Error: Rol de usuario no reconocido2");
           }
-          this.router.navigate(['/bienvenida'], navegationExtras)
-          console.log("correcto");
-        }
-        else {
-          
-          this.loginerror = true;
-          this.error = false;
-          console.log("informacion ingresada incorrecta")
-    
+  
+          // Salir del bucle una vez que se ha autenticado al usuario
+          break;
         }
       }
-    }
-    else {
-      
+  
+      if (!usuarioAutenticado) {
+        this.loginerror = true;
+        this.error = false;
+        console.log("Información ingresada incorrecta");
+      }
+    } else {
       this.loginerror = false;
       this.error = true;
-      console.log("No hay Usuarios Registrados")
-
+      console.log("No hay usuarios registrados");
     }
   }
 
