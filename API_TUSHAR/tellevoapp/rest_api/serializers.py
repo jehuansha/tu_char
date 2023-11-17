@@ -5,9 +5,9 @@ from core.models import Viaje
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ['user','password','nombre','correo']
+        fields = ['user','password','nombre','correo','rol']
 
 class ViajeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Viaje
-        fields = ['hora','costo','capacidad']        
+        fields = ['patente','hora','costo','capacidad','destino','duenno']        

@@ -61,8 +61,24 @@ def login(request):
 
 
 @csrf_exempt
-@api_view(['GET'])
+@api_view(['GET','POST'])
 def lista_viaje(request):
-    categorias = Viaje.objects.all()
-    serializer = ViajeSerializer(categorias, many=True)
-    return Response(serializer.data)
+    if request.method == 'GET':
+        categorias = Viaje.objects.all()
+        serializer = ViajeSerializer(categorias, many = True)
+        return Response(serializer.data)
+    elif request.method == 'POST':
+
+        serializer = ViajeSerializer(data=request.data)
+        print(serializer)
+        if serializer.is_valid():
+            patente = request.POST.get('patente', None)
+            print(patente)
+            if patente in Viaje.objects.values_list('patente', flat=True):
+                print("ingresao")
+                return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else: 
+            return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)

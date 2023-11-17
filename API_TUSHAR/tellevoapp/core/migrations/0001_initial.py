@@ -19,17 +19,22 @@ class Migration(migrations.Migration):
                 ('password' , models.CharField(max_length=20, verbose_name = "Contraseña Usuario")),
                 ('nombre' , models.CharField(max_length=20, verbose_name = "Nombre de la Persona")),
                 ('correo' , models.CharField(max_length=50, verbose_name = "Correo de la Persona")),
+                ('rol', models.CharField(max_length=15, verbose_name = "Rol")),
             ],
         ),
         migrations.CreateModel(
             name='Viaje',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('hora', models.IntegerField(verbose_name='Hora de inicio del Viaje')),
-                ('costo', models.CharField(max_length=5, verbose_name='Costo del Viaje')),
-                ('capacidad', models.CharField(max_length=1, verbose_name='Capacidad de Pasajeros')),
+                ('patente', models.CharField(max_length=10,verbose_name = "patente")),
+                ('hora', models.CharField(max_length=10,verbose_name = "Hora de inicio del Viaje")),
+                ('costo', models.IntegerField(verbose_name = "Costo del Viaje")),
+                ('capacidad', models.IntegerField(verbose_name = "Capacidad de Pasajeros")),
+                ('destino', models.CharField(max_length=20, verbose_name = "destino")),
+                ('duenno', models.CharField(max_length=20, verbose_name = "dueño")),
             ],
         ),
     ]
 
-    
+
+

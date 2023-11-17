@@ -10,6 +10,15 @@ import { AutenticacionService } from '../autenticacion.service';
 })
 export class BienvenidaPage {
 
+  viajeData: any = {
+    patente: "",
+    hora: "",
+    costo: "",
+    capacidad: "",
+    destino: "",
+    duenno: ""
+  }
+
   state: any;
   credentials: any;
   viajes: any = [];
@@ -21,6 +30,27 @@ export class BienvenidaPage {
         this.credentials = this.state.credentials
         console.log(this.credentials);
       });
+  }
+
+  register() {
+    this.djangoApi.crearviaje(this.viajeData).subscribe(
+      (response) => {
+        // Manejar la respuesta exitosa (redireccionar, mostrar mensaje, etc.)
+        console.log('Registro exitoso:', response);
+      },
+      (error) => {
+        // Manejar el error (mostrar un mensaje de error, etc.)
+        console.error('Error en el registro:', error);
+      }
+    );
+  }
+
+  logout(){
+    localStorage.removeItem('ingresado');
+    this.router.navigate(['/home']); 
+  }
+}
+
     // this.djangoApi.getUser().subscribe(
     //   (user)=>{
     //     console.log(user);
@@ -40,10 +70,3 @@ export class BienvenidaPage {
     //     console.log(error);
     //   }
     // );
-  }
-
-  logout(){
-    localStorage.removeItem('ingresado');
-    this.router.navigate(['/home']); 
-  }
-}

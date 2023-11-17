@@ -22,7 +22,9 @@ export class DjangoapiService {
     .pipe(retry(3));
   }
 
-
+  crearviaje(viajeData: any): Observable<any> {
+    return this.http.post(this.apiURL + '/lista_viaje', viajeData);
+  }
 
 
 }

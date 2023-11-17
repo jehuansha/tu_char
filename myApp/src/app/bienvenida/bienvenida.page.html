@@ -11,7 +11,38 @@
     </ion-toolbar>
   </ion-header>
   <ion-label> <ion-text color="white"><h1>Bienvenido a TeLlevoAPP, {{ credentials.username }}</h1></ion-text> </ion-label>
-  <ion-button fill="outline" color="color" (click)="logout()">Salir</ion-button>
+  <div id="container">
+    <ion-item>
+      <ion-label position="floating">Patente</ion-label>
+      <ion-input [(ngModel)]="viajeData.patente" name="patente" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Hora</ion-label>
+      <ion-input [(ngModel)]="viajeData.hora" name="hora"  required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Costo</ion-label>
+      <ion-input [(ngModel)]="viajeData.costo" name="costo" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Capacidad</ion-label>
+      <ion-input [(ngModel)]="viajeData.capacidad" name="capacidad" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Destino</ion-label>
+      <ion-input [(ngModel)]="viajeData.destino" name="destino" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Dueño</ion-label>
+      <ion-input [(ngModel)]="viajeData.duenno" name="duenno" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-button fill="outline" color="color" (click)="register()">Registrar Viaje</ion-button>
+      <ion-button fill="outline" color="color" (click)="logout()">Salir</ion-button>
+    </ion-item>
+  </div>
+
 
 </ion-content>
 
