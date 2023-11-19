@@ -15,6 +15,8 @@
   right: 0;
   top: 36%;
   transform: translateY(-50%);
+
+  
 }
 
 
@@ -29,8 +31,11 @@
 //////////
 #avatar{
 margin: auto;
-width: 500px;
-height: 200px;
+position: center;
+display: flex;
+width: 100%; 
+max-width: 250px; 
+height: auto; 
 }
 
 #containers {
@@ -40,5 +45,22 @@ left: 0;
 right: 0;
 top: 66%;
 transform: translateY(-50%);
+}
+
+.logoql {
+  display: flex;
+  padding-left: 10px; 
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+  /* Estilos para pantallas más pequeñas, como dispositivos Android */
+  body {
+    font-size: 14px;
+  }
 }
 

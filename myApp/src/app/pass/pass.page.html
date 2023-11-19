@@ -1,27 +1,40 @@
-
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-      <img src="assets/img/logo.png" alt="logo">
+    <div class="tushar">
+      <img src="assets/img/TeLlevoApp_preview_rev_1.png" alt="Descripción de la imagen" class="esquina-superior-izquierda">
+    </div>
+    <div class="tushar2">
+      <img src="assets/img/logo.png" alt="Descripción de la imagen" class="esquina-superior-izquierda">
+    </div>
+    <div class="centro">
+      <p class="texto-esquina-superior-derecha">Viajes</p>
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list *ngIf="viaje.length > 0">
-    <ion-item *ngFor="let item of viaje">
-      <ion-label>{{ item.patente }}</ion-label>
-      <ion-label>{{ item.hora }} hrs</ion-label>
-      <ion-label>${{ item.costo }}</ion-label>
-      <ion-label>{{ item.capacidad }} Pasajeros</ion-label>
-      <ion-label>{{ item.destino }}</ion-label>
-      <ion-label>{{ item.duenno }}</ion-label>
-    </ion-item>
-    <ion-button fill="outline" color="color">Seleccionar Viaje</ion-button>
-  </ion-list>
+  <ion-content>
+    <ion-list>
+      <ion-item *ngFor="let item of viaje">
+        <ion-card >
+          <ion-card-header>
+            <ion-label>PATENTE: {{ item.patente }}</ion-label>
+        <ion-label>HORA: {{ item.hora }} hrs</ion-label>
+        <ion-label>COSTO: ${{ item.costo }}</ion-label>
+        <ion-label>PASAJEROS: {{ item.capacidad }} Pasajeros</ion-label>
+        <ion-label>DESTINO: {{ item.destino }}</ion-label>
+        <ion-label>DUEÑO: {{ item.duenno }}</ion-label>
+          </ion-card-header>
 
-  <ion-button fill="outline" color="color" (click)="logout()">Salir</ion-button>
+          <ion-card-content> 
+            <ion-img class="tushi" src="assets/img/tushar3.png"  alt="TUSHARTEST"></ion-img>
+        </ion-card-content>
 
-
-  <ion-text *ngIf="viaje.length === 0" color="warning">
-    No se encontraron datos de viaje.
-  </ion-text>
-</ion-content>
+          <ion-button fill="outline" color="color">Seleccionar Viaje</ion-button>
+        </ion-card>
+      </ion-item>
+    </ion-list>
+    <ion-button fill="outline" color="color" (click)="logout()">Salir</ion-button>
+    <ion-text *ngIf="viaje.length === 0" color="warning">
+      No se encontraron datos de viaje.
+    </ion-text>
+  </ion-content>

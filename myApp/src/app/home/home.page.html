@@ -1,8 +1,13 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <img src="assets/img/logo.png" alt="logo">
+    <div class="logoql">
+      <img src="assets/img/logo.png" alt="Descripción de la imagen 1">
+    </div>
   </ion-toolbar>
+  
 </ion-header>
+
 
 <ion-content [fullscreen]="true">
 
@@ -18,17 +23,16 @@
 
   <div id="containers">
     <ion-avatar id="avatar" #avatar>
-      <img alt="Silhouette of a person's head"
-        src="https://media.discordapp.net/attachments/1016908374119563305/1149486321459535981/kisspng-car-uber-taxi-vehicle-new-york-city-taxi-driver-5ad1c417aa9296.2469973615236966636987_preview_rev_1.png" />
+      <ion-img class="tushi" src="assets/img/taxi.png"  alt="TUSHARTEST"></ion-img>
     </ion-avatar>
-
   </div>
+  
 
   <div *ngIf="segment === 'login'">
     <div id="container">
       <ion-list>
-        <div id="tituloql" color="primary">
-          <header>TeLlevoAPP</header>
+        <div id="logoql2" color="primary">
+          <img src="assets/img/TeLlevoApp_preview_rev_1.png" alt="Descripción de la imagen 2">
         </div>
         <ion-item>
           <ion-input label="Usuario" matInput [(ngModel)]="credentials.username" required labelPlacement="stacked" placeholder="Ingrese usuario"
@@ -63,3 +67,4 @@
   
 
 </ion-content>
+

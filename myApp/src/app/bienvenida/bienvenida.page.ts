@@ -36,11 +36,11 @@ export class BienvenidaPage {
   register() {
     this.djangoApi.crearviaje(this.viajeData).subscribe(
       (response) => {
-        // Manejar la respuesta exitosa (redireccionar, mostrar mensaje, etc.)
+        
         console.log('Registro exitoso:', response);
       },
       (error) => {
-        // Manejar el error (mostrar un mensaje de error, etc.)
+        
         console.error('Error en el registro:', error);
       }
     );
@@ -58,24 +58,3 @@ export class BienvenidaPage {
 
 }
 
-
-
-    // this.djangoApi.getUser().subscribe(
-    //   (user)=>{
-    //     console.log(user);
-    //   }
-    //   ,
-    //   (error)=>{
-    //     console.log(error);
-    //   }
-    // )
-    
-    // this.djangoApi.getViaje().subscribe(
-    //   (viaje)=>{
-    //     console.log(viaje);
-    //   }
-    //   ,
-    //   (error)=>{
-    //     console.log(error);
-    //   }
-    // );
