@@ -26,6 +26,7 @@ export class HomePage {
   users: any = [];
   loginerror: boolean = false;
   error: boolean = false;
+  errorrol: any = [];
 
 
 
@@ -144,10 +145,9 @@ export class HomePage {
       console.log("No hay usuarios registrados");
     }
   }
-
-  
-
-  
+  public sumar(x:number,y:number):number{
+    return x +y;
+  }
 }
 
 

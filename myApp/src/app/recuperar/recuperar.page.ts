@@ -11,5 +11,7 @@ export class RecuperarPage implements OnInit {
 
   ngOnInit() {
   }
-
+  public sumar(x:number,y:number):number{
+    return x +y;
+  }
 }
