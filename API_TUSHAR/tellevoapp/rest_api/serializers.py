@@ -10,4 +10,4 @@ class UsuarioSerializer(serializers.ModelSerializer):
 class ViajeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Viaje
-        fields = ['patente','hora','costo','capacidad','destino','duenno']        
+        fields = ['patente','hora','costo','capacidad','destino','duenno','url_imagen']      

@@ -16,7 +16,8 @@ export class BienvenidaPage {
     costo: "",
     capacidad: "",
     destino: "",
-    duenno: ""
+    duenno: "",
+    url_imagen: ""
   }
 
   state: any;

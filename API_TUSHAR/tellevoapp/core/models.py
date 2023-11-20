@@ -19,4 +19,5 @@ class Viaje(models.Model):
     capacidad = models.IntegerField(verbose_name = "Capacidad de Pasajeros")
     destino = models.CharField(max_length=20, verbose_name = "destino")
     duenno = models.CharField(max_length=20, verbose_name = "dueño")
+    url_imagen = models.URLField(max_length=500, verbose_name = "url_imagen")
 

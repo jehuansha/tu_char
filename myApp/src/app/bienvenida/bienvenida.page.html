@@ -46,6 +46,11 @@
     </ion-item>
 
     <ion-item>
+      <ion-label position="floating">Imagen(Imgur)</ion-label>
+      <ion-input [(ngModel)]="viajeData.url_imagen" name="url_imagen" required></ion-input>
+    </ion-item>
+
+    <ion-item>
       <ion-button fill="outline" color="color" (click)="register1()">Registrar Viaje</ion-button>
       <ion-button fill="outline" color="color" (click)="logout()">Salir</ion-button>
       <div *ngIf="loginerror" class="error-message" style="color: rgb(60, 199, 41);">
