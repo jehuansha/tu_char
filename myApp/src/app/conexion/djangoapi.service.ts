@@ -26,5 +26,13 @@ export class DjangoapiService {
     return this.http.post(this.apiURL + '/lista_viaje', viajeData);
   }
 
+  // public sumar (x:number, y:number):number{
+  //   return x+y;
+
+  // }
+
+
+  
+
 
 }

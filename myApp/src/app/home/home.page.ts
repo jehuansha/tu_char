@@ -27,6 +27,7 @@ export class HomePage {
   loginerror: boolean = false;
   error: boolean = false;
   errorrol: any = [];
+  public mensaje: string = "";
 
 
 
@@ -145,9 +146,11 @@ export class HomePage {
       console.log("No hay usuarios registrados");
     }
   }
-  public sumar(x:number,y:number):number{
-    return x +y;
-  }
+
+
+  // mostarSuma(){
+  //   this.mensaje = "la suma es: "+this.djangoApi.sumar(3,7);
+  // }
 }
 
 
