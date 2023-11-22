@@ -68,8 +68,7 @@ export class HomePage {
 
   ionViewWillEnter() {
     // Limpiar los campos de entrada al volver a la página de inicio
-    this.credentials.username = "";
-    this.credentials.password = "";
+    
 
     // Restablecer las banderas de error
     this.loginerror = false;
@@ -98,6 +97,7 @@ export class HomePage {
   }
 
   entrar() {
+    
     if (this.credentials.username == "" || this.credentials.password == "") {
       this.loginerror = false;
       this.error = false;
@@ -144,6 +144,7 @@ export class HomePage {
       if (!usuarioAutenticado) {
         this.loginerror = true;
         this.error = false;
+        
         console.log("Información ingresada incorrecta");
       }
     } else {
@@ -160,6 +161,11 @@ export class HomePage {
         Number(this.entrada.numero1),
         Number(this.entrada.numero2));
   }
+
+  // recu(){
+  //   this.credentials.username = this.credentials.username;
+  //   this.credentials.password = this.credentials.password;
+  // }
 }
 
 
