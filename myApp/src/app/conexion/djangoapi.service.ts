@@ -10,6 +10,7 @@ import { retry } from 'rxjs/internal/operators/retry';
 export class DjangoapiService {
   apiURL = 'https://mjz9373v-8000.brs.devtunnels.ms/api';
   
+  
   constructor(private http: HttpClient) { }
 
   getUser():Observable<any>{
@@ -26,10 +27,9 @@ export class DjangoapiService {
     return this.http.post(this.apiURL + '/lista_viaje', viajeData);
   }
 
-  // public sumar (x:number, y:number):number{
-  //   return x+y;
-
-  // }
+  public sumar(x:number, y:number):number{
+    return x+y;
+  }
 
 
   

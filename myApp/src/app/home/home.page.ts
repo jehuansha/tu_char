@@ -22,12 +22,16 @@ export class HomePage {
     password: ""
   }
   hide = true;
-  usuarios : any = [];
+  usuarios : any[] = [];
   users: any = [];
   loginerror: boolean = false;
   error: boolean = false;
   errorrol: any = [];
   public mensaje: string = "";
+  public entrada = {
+    numero1: 0,
+    numero2: 0
+  };
 
 
 
@@ -42,7 +46,9 @@ export class HomePage {
  
   }
   ngOnInit(){
-    this.cargaUsuarios()
+    if (this.djangoApi) {
+      this.cargaUsuarios();
+    }
   }
 
   ngAfterViewInit() {
@@ -148,9 +154,12 @@ export class HomePage {
   }
 
 
-  // mostarSuma(){
-  //   this.mensaje = "la suma es: "+this.djangoApi.sumar(3,7);
-  // }
+  doSumar(){
+    this.mensaje= "La suma es: " + 
+      this.djangoApi.sumar(
+        Number(this.entrada.numero1),
+        Number(this.entrada.numero2));
+  }
 }
 
 

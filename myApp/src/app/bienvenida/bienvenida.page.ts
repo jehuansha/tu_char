@@ -25,7 +25,7 @@ export class BienvenidaPage {
   viajes: any = [];
   loginerror: boolean = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router , private auth: AutenticacionService,
+  constructor(private activatedRoute: ActivatedRoute, private router: Router ,
     private djangoApi: DjangoapiService){
       this.activatedRoute.queryParams.subscribe(params => {
         this.state = this.router.getCurrentNavigation()?.extras.state;
