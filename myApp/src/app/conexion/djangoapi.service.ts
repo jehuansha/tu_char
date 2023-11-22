@@ -8,7 +8,7 @@ import { retry } from 'rxjs/internal/operators/retry';
 })
 
 export class DjangoapiService {
-  apiURL = 'http://127.0.0.1:8000/api';
+  apiURL = 'https://mjz9373v-8000.brs.devtunnels.ms/api';
   
   constructor(private http: HttpClient) { }
 

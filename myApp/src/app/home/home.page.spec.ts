@@ -16,7 +16,7 @@ describe('HomePage', () => {
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    DjangoapiServicet = jasmine.createSpyObj('DjangoapiService', {
+    DjangoapiServicet = jasmine.createSpyObj('DjangoapiService ', {
       sumar:()=>{
         return 10
       }
