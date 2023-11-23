@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DjangoapiService } from '../conexion/djangoapi.service';
-import { AutenticacionService } from '../autenticacion.service';
+
 
 @Component({
   selector: 'app-bienvenida',

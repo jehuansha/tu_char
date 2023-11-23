@@ -24,4 +24,24 @@ describe('BienvenidaPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
+  it('should display username in the welcome message', () => {
+    // Set test credentials
+    const testCredentials = {
+      username: '',
+      // Add other required properties based on your implementation
+    };
+
+    // Assign test credentials to component
+    component.credentials = testCredentials;
+
+    // Trigger change detection
+    fixture.detectChanges();
+
+    // Get the rendered welcome message
+    const welcomeMessage = fixture.nativeElement.querySelector('.texto-esquina-superior-derecha').textContent.trim();
+
+    // Assert that the welcome message contains the test username
+    expect(welcomeMessage).toContain(testCredentials.username);
+  });
 });
