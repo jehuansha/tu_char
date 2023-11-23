@@ -6,7 +6,6 @@ import { DjangoapiService } from '../conexion/djangoapi.service';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { of } from 'rxjs';
-import { cold } from 'jasmine-marbles';
 import { RouterModule } from '@angular/router';
 
 describe('HomePage', () => {

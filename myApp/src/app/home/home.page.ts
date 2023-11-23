@@ -32,7 +32,7 @@ export class HomePage {
     numero1: 0,
     numero2: 0
   };
-
+  recordarCredenciales = false;
 
 
   @ViewChild(IonAvatar,{read:ElementRef}) avatar!:ElementRef<HTMLIonAvatarElement>;
@@ -49,8 +49,17 @@ export class HomePage {
     if (this.djangoApi) {
       this.cargaUsuarios();
     }
+    const recordarCredenciales = localStorage.getItem('recordarCredenciales');
+    this.recordarCredenciales = recordarCredenciales === 'true';
+  
+    if (this.recordarCredenciales) {
+      this.credentials.username = localStorage.getItem('username') || '';
+      this.credentials.password = localStorage.getItem('password') || '';
+    } else {
+      this.credentials.username = '';
+      this.credentials.password = '';
+    }
   }
-
   ngAfterViewInit() {
     this.animation = this.animationCtrl.create()
       .addElement(this.avatar.nativeElement)
@@ -67,10 +76,6 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
-    // Limpiar los campos de entrada al volver a la página de inicio
-    
-
-    // Restablecer las banderas de error
     this.loginerror = false;
   }
   
@@ -97,14 +102,13 @@ export class HomePage {
   }
 
   entrar() {
-    
     if (this.credentials.username == "" || this.credentials.password == "") {
       this.loginerror = false;
       this.error = false;
       console.log("vacio");
     } else if (this.usuarios.length > 0) {
       let usuarioAutenticado = false;
-  
+
       for (const usuario of this.usuarios) {
         if (
           usuario.user === this.credentials.username &&
@@ -112,45 +116,52 @@ export class HomePage {
         ) {
           usuarioAutenticado = true;
 
-          if (usuario.rol === 'conductor') {
-            
-            localStorage.setItem('ingresado', 'true');
-            let navegationExtras: NavigationExtras = {
-              state: {
-                credentials: this.credentials,
-              },
-            };
-            this.router.navigate(['/bienvenida'], navegationExtras);
-            console.log("Usuario conductor autenticado correctamente");
-          } else if (usuario.rol === 'pasajero') {
-            
-            localStorage.setItem('ingresado', 'true');
-            let navegationExtras: NavigationExtras = {
-              state: {
-                credentials: this.credentials,
-              },
-            };
-            this.router.navigate(['/pass'], navegationExtras);
-            console.log("Usuario pasajero autenticado correctamente");
+          if (usuario.rol === 'conductor' || usuario.rol === 'pasajero') {
+            this.autenticarUsuario(usuario.rol);
           } else {
-          
-            console.log("Error: Rol de usuario no reconocido2");
+            console.log("Error: Rol de usuario no reconocido");
           }
-          
+
           break;
         }
       }
-  
+
       if (!usuarioAutenticado) {
         this.loginerror = true;
         this.error = false;
-        
         console.log("Información ingresada incorrecta");
       }
     } else {
       this.loginerror = false;
       this.error = true;
       console.log("No hay usuarios registrados");
+    }
+  }
+
+  autenticarUsuario(rol: string) {
+    if (this.recordarCredenciales) {
+      localStorage.setItem('recordarCredenciales', 'true');
+      localStorage.setItem('username', this.credentials.username);
+      localStorage.setItem('password', this.credentials.password);
+    } else {
+      localStorage.removeItem('recordarCredenciales');
+      localStorage.removeItem('username');
+      localStorage.removeItem('password');
+    }
+  
+    localStorage.setItem('ingresado', 'true');
+    let navegationExtras: NavigationExtras = {
+      state: {
+        credentials: this.credentials,
+      },
+    };
+
+    if (rol === 'conductor') {
+      this.router.navigate(['/bienvenida'], navegationExtras);
+      console.log("Usuario conductor autenticado correctamente");
+    } else if (rol === 'pasajero') {
+      this.router.navigate(['/pass'], navegationExtras);
+      console.log("Usuario pasajero autenticado correctamente");
     }
   }
 
@@ -162,11 +173,3 @@ export class HomePage {
         Number(this.entrada.numero2));
   }
 }
-
-
-
-
-// recu(){
-  //   this.credentials.username = this.credentials.username;
-  //   this.credentials.password = this.credentials.password;
-  // }

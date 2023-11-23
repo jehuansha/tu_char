@@ -46,27 +46,34 @@ export class PassPage implements OnInit {
 
   async seleccionarViajeYEnviarCorreo(item: any) {
     try {
-      // Obtener el nombre de correo del dueño del viaje (de tu API Django)
-      // const nombreDeCorreo = await this.djangoApi.getUser(usuarios.correo).toPromise();
-      
-
-      // Construir el cuerpo del correo con los datos del viaje
       const cuerpo = `
-        PATENTE: ${item.patente}
-        HORA: ${item.hora} hrs
-        COSTO: $${item.costo}
-        PASAJEROS: ${item.capacidad} Pasajeros
-        DESTINO: ${item.destino}
-        DUEÑO: ${item.duenno}
+      Buenas tardes cliente,
+
+      Usted ha seleccionado el viaje con la siguiente información:
+
+      PATENTE: ${item.patente}
+      HORA: ${item.hora} hrs
+      COSTO: $${item.costo}
+      PASAJEROS: ${item.capacidad}
+      DESTINO: ${item.destino}
+      DUEÑO: ${item.duenno}
+
+      Gracias por elegir nuestro servicio. ¡Esperamos que tenga un excelente viaje!
+
+      Atentamente,
+      Tellevoapp
         `;
 
       // Construir el enlace mailto
-      const enlaceMailto = `mailto:${item.correo}?subject=Seleccionar Viaje&body=${encodeURIComponent(cuerpo)}`;
+      const asunto = 'Confirmación Viaje';
+      const enlaceMailto = `mailto:${item.correo}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
       window.location.href = enlaceMailto;
     } catch (error) {
       console.error('Error al obtener el nombre de correo', error);
     }
   }
+
+  
 
   logout(){
     localStorage.removeItem('ingresado');
