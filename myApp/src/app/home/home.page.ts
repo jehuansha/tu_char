@@ -42,7 +42,7 @@ export class HomePage {
 
 
   private animation!:Animation;
-  constructor(private router: Router,private http: HttpClient,private animationCtrl:AnimationController,private djangoApi: DjangoapiService , private storage:Storage ,private auth: AutenticacionService) { 
+  constructor(private router: Router,private http: HttpClient,private animationCtrl:AnimationController,private djangoApi: DjangoapiService) { 
  
   }
   ngOnInit(){
@@ -75,7 +75,7 @@ export class HomePage {
   }
   
   home(){
-    return this.http.get("https://8165g0qw-8000.brs.devtunnels.ms/api/lista_usuarios/").subscribe(
+    return this.http.get("https://mjz9373v-8000.brs.devtunnels.ms/api/lista_usuarios/").subscribe(
       data=>{
         console.log(data)
       }
@@ -161,11 +161,12 @@ export class HomePage {
         Number(this.entrada.numero1),
         Number(this.entrada.numero2));
   }
-
-  // recu(){
-  //   this.credentials.username = this.credentials.username;
-  //   this.credentials.password = this.credentials.password;
-  // }
 }
 
 
+
+
+// recu(){
+  //   this.credentials.username = this.credentials.username;
+  //   this.credentials.password = this.credentials.password;
+  // }

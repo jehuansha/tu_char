@@ -1,5 +1,5 @@
 
-import { IonicModule } from '@ionic/angular';
+import { AnimationController, IonicModule } from '@ionic/angular';
 import { HomePage } from './home.page';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DjangoapiService } from '../conexion/djangoapi.service';
@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { of } from 'rxjs';
 import { cold } from 'jasmine-marbles';
+import { RouterModule } from '@angular/router';
 
 describe('HomePage', () => {
   let component: HomePage;
@@ -42,4 +43,51 @@ describe('HomePage', () => {
     component.doSumar();
     expect(component.mensaje).toBe("La suma es: 9");
   });  
+
+  it('prueba de login', () => {
+    const users = [
+      { id: 0, user: 'tushar', password: '1234' },
+      { id: 1, user: 'jean', password: 'jota' },
+    ];
+
+    spyOn(djangoApiService, 'getUser').and.returnValue(of(users));
+    component.ngOnInit();
+    expect(component.usuarios).toEqual(users);
+  });
+  
+
+  it('Prueba de rol pasajero', () => {
+    component.credentials = { username: 'tushar', password: '1234' };
+
+    component.users = [
+      { user: 'tushar', password: '1234', role: 'pasajero' },
+      
+    ];
+    component.entrar();
+    console.log('loginerror:', component.loginerror);
+    console.log('error:', component.error);
+    expect(component.loginerror).toBeFalsy();
+    
+   
+  });
+
+
+  it('Prueba rol conductor', () => {
+    component.credentials = { username: 'tushar', password: '1234' };
+
+    component.users = [
+      { user: 'tushar', password: '1234', role: 'conductor' },
+      
+    ];
+    component.entrar();
+    console.log('loginerror:', component.loginerror);
+    console.log('error:', component.error);
+    expect(component.loginerror).toBeFalsy();
+    
+   
+  });
+
+
+
+  
 });
