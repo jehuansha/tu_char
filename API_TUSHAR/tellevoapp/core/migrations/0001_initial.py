@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('user' , models.CharField(max_length=20,verbose_name = "Nombre Usuario")),
                 ('password' , models.CharField(max_length=20, verbose_name = "Contraseña Usuario")),
                 ('nombre' , models.CharField(max_length=20, verbose_name = "Nombre de la Persona")),
-                ('correo' , models.CharField(max_length=50, verbose_name = "Correo de la Persona")),
+                ('correo' , models.EmailField(max_length=50, verbose_name = "Correo de la Persona")),
                 ('rol', models.CharField(max_length=15, verbose_name = "Rol")),
             ],
         ),
@@ -33,6 +33,7 @@ class Migration(migrations.Migration):
                 ('destino', models.CharField(max_length=20, verbose_name = "destino")),
                 ('duenno', models.CharField(max_length=20, verbose_name = "dueño")),
                 ('url_imagen', models.URLField(max_length=500, verbose_name = "url_imagen")),
+                ('correo' , models.EmailField(max_length=50, verbose_name = "Correo del Conductor")),
             ],
         ),
     ]

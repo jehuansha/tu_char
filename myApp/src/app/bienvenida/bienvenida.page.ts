@@ -17,6 +17,7 @@ export class BienvenidaPage {
     capacidad: "",
     destino: "",
     duenno: "",
+    correo: "",
     url_imagen: ""
   }
 

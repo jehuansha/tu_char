@@ -23,6 +23,7 @@
         <ion-label>PASAJEROS: {{ item.capacidad }} Pasajeros</ion-label>
         <ion-label>DESTINO: {{ item.destino }}</ion-label>
         <ion-label>DUEÑO: {{ item.duenno }}</ion-label>
+        <ion-label>CORREO: {{ item.correo }}</ion-label>
           </ion-card-header>
 
           <ion-card-content> 
@@ -30,7 +31,7 @@
             <ion-img class="tushi" src="{{item.url_imagen}}"></ion-img>
         </ion-card-content>
 
-          <ion-button fill="outline" color="color">Seleccionar Viaje</ion-button>
+          <ion-button fill="outline" color="color" (click)="seleccionarViajeYEnviarCorreo(item)">Seleccionar Viaje</ion-button>
         </ion-card>
       </ion-item>
     </ion-list>

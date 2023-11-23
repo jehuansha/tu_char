@@ -8,8 +8,11 @@ import { retry } from 'rxjs/internal/operators/retry';
 })
 
 export class DjangoapiService {
-  apiURL = 'https://mjz9373v-8000.brs.devtunnels.ms/api';
-  
+  getNombreDeCorreo(duenno: any) {
+    throw new Error('Method not implemented.');
+  }
+  // apiURL = 'https://mjz9373v-8000.brs.devtunnels.ms/api';
+  apiURL = 'https://8165g0qw-8000.brs.devtunnels.ms/api';
   
   constructor(private http: HttpClient) { }
 

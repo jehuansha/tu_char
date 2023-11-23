@@ -75,7 +75,7 @@ export class HomePage {
   }
   
   home(){
-    return this.http.get("https://mjz9373v-8000.brs.devtunnels.ms/api/lista_usuarios/").subscribe(
+    return this.http.get("https://8165g0qw-8000.brs.devtunnels.ms/api/lista_usuarios/").subscribe(
       data=>{
         console.log(data)
       }

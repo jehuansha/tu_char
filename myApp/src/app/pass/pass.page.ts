@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class PassPage implements OnInit {
 
   viaje: any[] = [];
+  usuarios: any;
 
   constructor(private djangoApi: DjangoapiService, private router: Router) { }
 
@@ -28,6 +29,43 @@ export class PassPage implements OnInit {
          console.log(error);
       }
     )
+  }
+
+  correoql(){
+    this.djangoApi.getUser().subscribe(
+      (res)=>{
+       console.log(res);
+        this.usuarios = res;
+     }
+     ,
+     (error)=>{
+        console.log(error);
+     }
+   )
+ }
+
+  async seleccionarViajeYEnviarCorreo(item: any) {
+    try {
+      // Obtener el nombre de correo del dueño del viaje (de tu API Django)
+      // const nombreDeCorreo = await this.djangoApi.getUser(usuarios.correo).toPromise();
+      
+
+      // Construir el cuerpo del correo con los datos del viaje
+      const cuerpo = `
+        PATENTE: ${item.patente}
+        HORA: ${item.hora} hrs
+        COSTO: $${item.costo}
+        PASAJEROS: ${item.capacidad} Pasajeros
+        DESTINO: ${item.destino}
+        DUEÑO: ${item.duenno}
+        `;
+
+      // Construir el enlace mailto
+      const enlaceMailto = `mailto:${item.correo}?subject=Seleccionar Viaje&body=${encodeURIComponent(cuerpo)}`;
+      window.location.href = enlaceMailto;
+    } catch (error) {
+      console.error('Error al obtener el nombre de correo', error);
+    }
   }
 
   logout(){
