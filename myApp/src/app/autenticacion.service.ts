@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 
-
-//Generamos un modelo interface para el usuario que llamara la base de datos
-
 @Injectable({
   providedIn: 'root'
 })

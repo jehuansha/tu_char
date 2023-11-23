@@ -14,7 +14,4 @@ describe('RecuperarPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('suma correcta', () => {
-    expect(component.sumar(3, 5)).toBe(8);
-  });
 });

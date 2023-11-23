@@ -25,7 +25,7 @@ describe('BienvenidaPage', () => {
     expect(component).toBeTruthy();
   });
   
-  it('should display username in the welcome message', () => {
+  it('Prueba Credencials', () => {
     // Set test credentials
     const testCredentials = {
       username: '',
