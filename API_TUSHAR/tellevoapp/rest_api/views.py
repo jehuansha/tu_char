@@ -11,6 +11,8 @@ from .serializers import UsuarioSerializer
 from .serializers import ViajeSerializer
 from django.contrib.auth.models import User
 
+from django.shortcuts import get_object_or_404
+
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.hashers import check_password
 
@@ -82,3 +84,20 @@ def lista_viaje(request):
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
         else: 
             return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+        
+
+@csrf_exempt
+@api_view(['POST'])
+def descontar(request):
+    data = JSONParser().parse(request)
+    viaje_id = data.get('viajeId', None)
+
+    viaje = get_object_or_404(Viaje, id=viaje_id)
+
+    if viaje.capacidad > 0:
+        viaje.capacidad -= 1
+        viaje.save(update_fields=['capacidad'])
+
+        return Response({'message': 'Viaje seleccionado correctamente'})
+    else:
+        return Response({'error': 'No hay pasajeros disponibles en este viaje'}, status=status.HTTP_400_BAD_REQUEST)

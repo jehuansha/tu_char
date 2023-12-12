@@ -73,6 +73,13 @@ export class PassPage implements OnInit {
     }
   }
 
+  descontar(item: any) {
+    const viajeId = item.id;
+    this.djangoApi.seleccionarViaje(viajeId)
+      .subscribe(response => {
+        console.log('Viaje seleccionado correctamente', response);
+      });
+  }
   
 
   logout(){

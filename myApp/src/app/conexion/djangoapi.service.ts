@@ -29,6 +29,10 @@ export class DjangoapiService {
     return this.http.post(this.apiURL + '/lista_viaje', viajeData);
   }
 
+  seleccionarViaje(viajeId: any): Observable<any> {
+    const body = { viajeId };
+    return this.http.post(this.apiURL + '/descontar', body);
+  }
   public sumar(x:number, y:number):number{
     return x+y;
   }

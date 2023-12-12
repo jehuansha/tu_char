@@ -43,7 +43,6 @@ export class HomePage {
 
   private animation!:Animation;
   constructor(private router: Router,private http: HttpClient,private animationCtrl:AnimationController,private djangoApi: DjangoapiService) { 
- 
   }
   ngOnInit(){
     if (this.djangoApi) {
