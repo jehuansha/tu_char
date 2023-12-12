@@ -6,7 +6,6 @@ import { AnimationController } from '@ionic/angular';
 import { DjangoapiService } from '../conexion/djangoapi.service';
 import { Storage } from '@ionic/storage';
 import { AutenticacionService } from '../autenticacion.service';
-
 import { HttpClient } from '@angular/common/http';
 
 
